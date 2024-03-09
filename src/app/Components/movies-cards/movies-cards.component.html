@@ -1,0 +1,70 @@
+@if (movie) {
+
+<!-- <div class="cards cards--one" (click)="routeMovie()"> -->
+<div class="cards cards--one" (click)="routeToSingleMovie(movie)">
+  <div>
+    <div class="myPoster">
+      <img
+        src="{{ movie.Poster }}"
+        class="img-responsive myimg"
+        alt="Cards Image"
+        loading="lazy"
+      />
+    </div>
+    <div class="desc">
+      <div class="name">{{ movie.Title }}</div>
+      <div class="imdb">{{ movie.Genre }}</div>
+      <p-rating [(ngModel)]="value" [cancel]="false"></p-rating>
+    </div>
+  </div>
+
+  <span class="cards--one__rect"></span>
+  <span class="cards--one__tri"></span>
+  <button class="watch-btn">Watch Now!</button>
+</div>
+} @else if (purchased) {
+<div class="cards cards--one" (click)="routeToSingleMoviePurchased(purchased)">
+  <div>
+    <div class="myPoster">
+      <img
+        src="{{ purchased['movie-img'] }}"
+        class="img-responsive myimg"
+        alt="Cards Image"
+        loading="lazy"
+      />
+    </div>
+    <div class="desc">
+      <div class="name">{{ purchased["movie-name"] }}</div>
+
+      <div class="time">
+        <div class="imdb">
+          <img src="/assets/images/movie.png" /><span>
+            {{ purchased.cinema }}</span
+          >
+        </div>
+        <div class="imdb">
+          <img src="/assets/images/time.png" />
+          <span>{{ purchased.time }}</span>
+        </div>
+        <div class="imdb">
+          <img src="/assets/images/date.png" /><span>
+            {{ purchased.date }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="cards--one__rect"></span>
+  <span class="cards--one__tri"></span>
+  <button class="watch-btn">Watch Now!</button>
+</div>
+} @else {
+<div
+  class="spinner-border text-danger"
+  style="width: 3rem; height: 3rem"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+}

@@ -1,0 +1,260 @@
+<div class="container-fluid">
+  <div class="row mb-5">
+    <div class="col-1"></div>
+    <div class="col-22">
+      <!-- Booking Content Goes Here-->
+      <div class="row my-5">
+        <div class="col-24 col-md-24 col-lg-8">
+          <div class="container">
+            <img
+              [src]="movie.Poster"
+              width="400"
+              height="450"
+              style="
+                border-radius: 10px;
+                filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+              "
+            />
+            <div class="mt-5">
+              <p-rating [(ngModel)]="value" [cancel]="false"></p-rating>
+            </div>
+            <p class="movie-name mt-3">{{ movie.Title }}</p>
+            <div class="container d-flex justify-content-between mt-5">
+              <div class="d-flex">
+                <div class="me-3">
+                  <i class="fa-regular fa-clock"></i>
+                </div>
+                <div>
+                  <small>2 H 36 M</small>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div>
+                  <i class="fa-solid fa-bars me-3"></i>
+                </div>
+                <div>
+                  <small>{{ movie.Genre }}</small>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div>
+                  <i class="fa-solid fa-calendar-days me-3"></i>
+                </div>
+                <div>
+                  <small>{{ movie.Year }}</small>
+                </div>
+              </div>
+            </div>
+            <div class="summary mt-5">
+              A frontiersman on a fur trading expedition in the 1820s fights for
+              survival after being mauled by a bear and left for dead by members
+              of his own hunting team.
+            </div>
+          </div>
+        </div>
+        <div class="col-24 col-md-24 col-lg-16">
+          <div class="container w-100">
+            @if(showOverlay){
+            <h3 class="mb-3">Choose Cinema and start your Journey :</h3>
+            }
+            <div
+              class="input-collection d-flex justify-content-around gap-lg-2 mt-5 mt-md-5 mt-lg-0"
+            >
+              <div>
+                <mat-form-field>
+                  <mat-label>Cinema :</mat-label>
+                  <select
+                    matNativeControl
+                    [(ngModel)]="choosenCinema"
+                    name="cinema"
+                    (change)="getDates()"
+                  >
+                    @for (cinema of cinemas; track cinemas) {
+                    <option [value]="cinema">{{ cinema }}</option>
+                    }
+                  </select>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Screen :</mat-label>
+                  <select
+                    matNativeControl
+                    [(ngModel)]="choosenScreen"
+                    name="screen"
+                  >
+                    @for (screen of screens; track screen) {
+                    <option [value]="screen">{{ screen }}</option>
+                    }
+                  </select>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Dates :</mat-label>
+                  <select
+                    matNativeControl
+                    [(ngModel)]="choosenDate"
+                    name="dates"
+                    (change)="getTimes()"
+                  >
+                    @for (date of dates; track date) {
+                    <option [value]="date">{{ date }}</option>
+                    }
+                  </select>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field>
+                  <mat-label>Time :</mat-label>
+                  <select
+                    matNativeControl
+                    [(ngModel)]="choosenTime"
+                    name="time"
+                    (ngModelChange)="onInputChange()"
+                  >
+                    @for (time of time; track time) {
+                    <option [value]="time">{{ time }}</option>
+                    }
+                  </select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="cinema-hall mt-3" style="position: relative">
+              @if(showOverlay){
+
+              <div class="overlay"></div>
+
+              }
+              <div class="screen-container">
+                <div class="screen"></div>
+              </div>
+              @if(showSeats){
+              <div class="seats">
+                <div class="first-row d-flex">
+                  @for(seat of firstRow; track firstRow;let i =$index ; let
+                  l=$count) {
+                  <app-cinema-seat
+                    (click)="reserveSeat($event, seat)"
+                    [seatNum]="seat.num"
+                    [seat]="seat"
+                  ></app-cinema-seat>
+                  }
+                </div>
+                <div class="second-row d-flex">
+                  @for(seat of secondRow; track secondRow;let i =$count) {
+                  <app-cinema-seat
+                    (click)="reserveSeat($event, seat)"
+                    [seatNum]="seat.num"
+                    [seat]="seat"
+                  ></app-cinema-seat>
+                  }
+                </div>
+                <div class="third-row d-flex">
+                  @for(seat of thirdRow; track thirdRow;let i =$index) {
+                  <app-cinema-seat
+                    (click)="reserveSeat($event, seat)"
+                    [seatNum]="seat.num"
+                    [seat]="seat"
+                  ></app-cinema-seat>
+                  }
+                </div>
+                <div class="fourth-row d-flex">
+                  @for(seat of fourthRow; track fourthRow;let i =$index) {
+                  <app-cinema-seat
+                    (click)="reserveSeat($event, seat)"
+                    [seatNum]="seat.num"
+                    [seat]="seat"
+                  ></app-cinema-seat>
+                  }
+                </div>
+                <div class="fifth-row d-flex">
+                  @for(seat of fifthRow; track fifthRow;let i =$index) {
+                  <app-cinema-seat
+                    (click)="reserveSeat($event, seat)"
+                    [seatNum]="seat.num"
+                    [seat]="seat"
+                  ></app-cinema-seat>
+                  }
+                </div>
+                <div class="sixth-row d-flex">
+                  @for(seat of sixth; track sixth;let i =$index) {
+                  <app-cinema-seat
+                    (click)="reserveSeat($event, seat)"
+                    [seatNum]="seat.num"
+                    [seat]="seat"
+                  ></app-cinema-seat>
+                  }
+                </div>
+
+                <div class="seventh-row d-flex">
+                  @for(seat of siventh; track siventh;let i =$index) {
+                  <app-cinema-seat
+                    (click)="reserveSeat($event, seat)"
+                    [seatNum]="seat.num"
+                    [seat]="seat"
+                  ></app-cinema-seat>
+                  }
+                </div>
+                <div class="eighth-row d-flex">
+                  @for(seat of eight; track eight;let i =$index) {
+                  <app-cinema-seat
+                    (click)="reserveSeat($event, seat)"
+                    [seatNum]="seat.num"
+                    [seat]="seat"
+                  ></app-cinema-seat>
+                  }
+                </div>
+              </div>
+              <div class="d-flex justify-content-evenly">
+                <div class="d-flex">
+                  <div
+                    class="color-flag1"
+                    style="width: 10px; height: 10px; background-color: red"
+                  ></div>
+                  <p class="ms-2" style="font-size: smaller">taken by you</p>
+                </div>
+                <div class="d-flex">
+                  <div
+                    class="color-flag1"
+                    style="width: 10px; height: 10px; background-color: #3b3b3b"
+                  ></div>
+                  <p class="ms-2" style="font-size: smaller">taken seat</p>
+                </div>
+                <div class="d-flex">
+                  <div
+                    class="color-flag1"
+                    style="width: 10px; height: 10px; background-color: gray"
+                  ></div>
+                  <p class="ms-2" style="font-size: smaller">untaken seat</p>
+                </div>
+              </div>
+              } @if(!showSeats){
+              <div
+                class="container d-flex justify-content-center align-items-center"
+                style="height: 50vh"
+              >
+                <h1>Fill Data and Choose your seats !!!</h1>
+              </div>
+              } @if(takenSeats.length>=1){
+              <div class="checkout-table my-4">
+                <app-table
+                  [takenSeats]="takenSeats"
+                  (dataEvent)="receiveSeatToDelete($event)"
+                ></app-table>
+              </div>
+              }
+
+              <div class="btn-container w-100 d-flex justify-content-end mt-5">
+                <div class="checkout primary-btn" (click)="sendDataToBackend()">
+                  Checkout
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>
