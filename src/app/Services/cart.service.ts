@@ -6,7 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CartService {
-  private readonly URL_DB = 'http://localhost:2024/';
+  private readonly URL_DB = 'https://iwatch.up.railway.app/';
 
   constructor(private readonly myClient: HttpClient) {}
 

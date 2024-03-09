@@ -16,7 +16,7 @@ export class BookingServiceService {
       }),
     };
     return this.http.post<any>(
-      'http://localhost:2024/reserve/movie-name',
+      'https://iwatch.up.railway.app/reserve/movie-name',
       movieName,
       headers
     );
@@ -28,7 +28,7 @@ export class BookingServiceService {
       }),
     };
     return this.http.post<any>(
-      'http://localhost:2024/reserve/cinema-name/dates',
+      'https://iwatch.up.railway.app/reserve/cinema-name/dates',
       details,
       headers
     );
@@ -40,7 +40,7 @@ export class BookingServiceService {
       }),
     };
     return this.http.post<any>(
-      'http://localhost:2024/reserve//cinema-name/dates/movies/times',
+      'https://iwatch.up.railway.app/reserve//cinema-name/dates/movies/times',
       details,
       headers
     );
@@ -52,7 +52,7 @@ export class BookingServiceService {
       }),
     };
     return this.http.post<any>(
-      'http://localhost:2024/reserve//reserved-seats',
+      'https://iwatch.up.railway.app/reserve//reserved-seats',
       details,
       headers
     );
@@ -64,20 +64,20 @@ export class BookingServiceService {
       }),
     };
     return this.http.post<any>(
-      "http://localhost:2024/movies/movie-name",
+      'https://iwatch.up.railway.app/movies/movie-name',
       name,
       headers
     );
   }
 
-  addToCart(data:any){
+  addToCart(data: any) {
     let headers = {
       headers: new HttpHeaders({
         accept: 'application/json',
       }),
     };
     return this.http.post<any>(
-      "http://localhost:2024/reserve/add/seats",
+      'https://iwatch.up.railway.app/reserve/add/seats',
       data,
       headers
     );

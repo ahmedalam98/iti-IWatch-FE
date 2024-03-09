@@ -13,19 +13,27 @@ export class UsersServicesService {
   constructor(private http: HttpClient) {}
 
   Register(userData: {}): Observable<any> {
-    return this.http.post('http://localhost:2024/auth/register', userData, {
-      headers: new HttpHeaders({
-        accept: 'application/json',
-      }),
-    });
+    return this.http.post(
+      'https://iwatch.up.railway.app/auth/register',
+      userData,
+      {
+        headers: new HttpHeaders({
+          accept: 'application/json',
+        }),
+      }
+    );
   }
 
   Login(userData: {}): Observable<any> {
-    return this.http.post('http://localhost:2024/auth/login', userData, {
-      headers: new HttpHeaders({
-        accept: 'application/json',
-      }),
-    });
+    return this.http.post(
+      'https://iwatch.up.railway.app/auth/login',
+      userData,
+      {
+        headers: new HttpHeaders({
+          accept: 'application/json',
+        }),
+      }
+    );
   }
 
   Logout(): void {
@@ -39,7 +47,7 @@ export class UsersServicesService {
 
   checkIfFavorite(movieName: {}): Observable<any> {
     return this.http.post(
-      `http://localhost:2024/user/check-favourite`,
+      `https://iwatch.up.railway.app/user/check-favourite`,
       movieName
     );
   }

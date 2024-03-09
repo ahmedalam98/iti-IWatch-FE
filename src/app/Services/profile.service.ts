@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ProfileService {
-  private readonly URL_DB = 'http://localhost:2024/user/profile';
+  private readonly URL_DB = 'https://iwatch.up.railway.app/user/profile';
 
   constructor(private readonly myClient: HttpClient) {}
 

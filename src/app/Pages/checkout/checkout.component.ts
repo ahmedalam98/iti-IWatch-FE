@@ -45,13 +45,13 @@ export class CheckoutComponent implements OnInit {
           this.extractDataFromCart();
         }
       },
-      error: (err) => {
+      error: (err: any) => {
         console.log(err);
       },
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     window.scrollTo(0, 0);
 
     // PayPal API Integration
@@ -64,25 +64,33 @@ export class CheckoutComponent implements OnInit {
       },
     });
 
-    setTimeout(() => {
-      this.cartService.getUserCart().subscribe({
-        next: (data: any) => {
-          // console.log(data);
-          this.userCart = data;
-
-          if (this.userCart?.cart.length !== 0) {
-            this.extractDataFromCart();
-          }
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-    }, 500);
+    try {
+      await this.getUserCartWithRetry();
+      if (this.userCart?.cart.length !== 0) {
+        this.extractDataFromCart();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  extractDataFromCart() {
-    this.userCart.cart.forEach((item: any, index: number) => {
+  async getUserCartWithRetry(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const retryInterval = setInterval(async () => {
+        try {
+          const data = await this.cartService.getUserCart().toPromise();
+          clearInterval(retryInterval);
+          this.userCart = data;
+          resolve();
+        } catch (error) {
+          console.log('Error fetching user cart:', error);
+        }
+      }, 3500);
+    });
+  }
+
+  async extractDataFromCart(): Promise<void> {
+    for (const item of this.userCart.cart) {
       this.movieCinema = item.cinema;
       this.movieDate = item.date;
       this.movieTime = item.time;
@@ -90,29 +98,22 @@ export class CheckoutComponent implements OnInit {
       this.movieImg = item.movieImg;
       this.movieSeats = item.seats.map((seat: any) => seat.num);
       this.movieRows = item.seats.map((seat: any) => seat.row);
-    });
+    }
   }
 
-  removeMovie(movie: any) {
-    this.cartService.removeMovieFromCart({ deletedMovie: movie }).subscribe({
-      next: (data: any) => {
-        this.cartService.getUserCart().subscribe({
-          next: (data: any) => {
-            this.userCart = data;
-
-            if (this.userCart?.cart.length !== 0) {
-              this.extractDataFromCart();
-            }
-          },
-          error: (err) => {
-            console.log(err);
-          },
-        });
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-    });
+  async removeMovie(movie: any): Promise<void> {
+    try {
+      await this.cartService
+        .removeMovieFromCart({ deletedMovie: movie })
+        .toPromise();
+      const data = await this.cartService.getUserCart().toPromise();
+      this.userCart = data;
+      if (this.userCart?.cart.length !== 0) {
+        await this.extractDataFromCart();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   checkoutUserCart(cart: any) {

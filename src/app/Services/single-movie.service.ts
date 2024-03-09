@@ -13,7 +13,7 @@ export class SingleMovieService {
   constructor(private http: HttpClient) {}
   GetMovieByName(movieName: {}): Observable<any> {
     return this.http.post(
-      'http://localhost:2024/movies/movie-name',
+      'https://iwatch.up.railway.app/movies/movie-name',
       movieName,
       {
         headers: new HttpHeaders({
@@ -25,7 +25,7 @@ export class SingleMovieService {
 
   checkIfReviewed(movieName: {}): Observable<any> {
     return this.http.post(
-      'http://localhost:2024/movies/review-check',
+      'https://iwatch.up.railway.app/movies/review-check',
       movieName,
       {
         headers: new HttpHeaders({
@@ -36,30 +36,42 @@ export class SingleMovieService {
   }
 
   SendReview(review: {}): Observable<any> {
-    return this.http.post('http://localhost:2024/movies/add-review', review, {
-      headers: new HttpHeaders({
-        accept: 'application/json',
-      }),
-    });
+    return this.http.post(
+      'https://iwatch.up.railway.app/movies/add-review',
+      review,
+      {
+        headers: new HttpHeaders({
+          accept: 'application/json',
+        }),
+      }
+    );
   }
 
   GetReviews(movieName: {}): Observable<any> {
-    return this.http.post('http://localhost:2024/movies/reviews', movieName, {
-      headers: new HttpHeaders({
-        accept: 'application/json',
-      }),
-    });
+    return this.http.post(
+      'https://iwatch.up.railway.app/movies/reviews',
+      movieName,
+      {
+        headers: new HttpHeaders({
+          accept: 'application/json',
+        }),
+      }
+    );
   }
   GetFavourites(movieName: {}): Observable<any> {
-    return this.http.post('http://localhost:2024/movies/reviews', movieName, {
-      headers: new HttpHeaders({
-        accept: 'application/json',
-      }),
-    });
+    return this.http.post(
+      'https://iwatch.up.railway.app/movies/reviews',
+      movieName,
+      {
+        headers: new HttpHeaders({
+          accept: 'application/json',
+        }),
+      }
+    );
   }
   AddToFavourites(movieName: {}): Observable<any> {
     return this.http.post(
-      'http://localhost:2024/user/add-favourite',
+      'https://iwatch.up.railway.app/user/add-favourite',
       movieName,
       {
         headers: new HttpHeaders({
@@ -70,7 +82,7 @@ export class SingleMovieService {
   }
   RemoveFromFavourites(movieName: {}): Observable<any> {
     return this.http.post(
-      'http://localhost:2024/user/delete-favourite',
+      'https://iwatch.up.railway.app/user/delete-favourite',
       movieName,
       {
         headers: new HttpHeaders({
@@ -81,7 +93,7 @@ export class SingleMovieService {
   }
   CheckFavourites(movieName: {}): Observable<any> {
     return this.http.post(
-      'http://localhost:2024/user/check-favourite',
+      'https://iwatch.up.railway.app/user/check-favourite',
       movieName,
       {
         headers: new HttpHeaders({
