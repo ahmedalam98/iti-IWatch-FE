@@ -72,7 +72,10 @@
               </div>
             </div>
             }@else {
-            <div class="noPurchased">There is no purchased yet :(</div>
+            <div class="noPurchased">
+              There is no purchased yet
+              <img src="/assets/images/sad.png" width="32px" height="32px" />
+            </div>
             }
           </div>
         </div>
@@ -83,5 +86,7 @@
 </div>
 
 } @else{
-<div>Loading</div>
+<div class="loader-container">
+  <span class="loader">Load&nbsp;ng</span>
+</div>
 }

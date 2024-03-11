@@ -20,6 +20,8 @@
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
   display: grid;
+  justify-items: center;
+
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 40px;
 }
@@ -180,7 +182,7 @@ h1 {
   }
 
   .second-column {
-    width: 100%;
+    width: 90%;
   }
 
   .logo {
@@ -192,6 +194,11 @@ h1 {
 @media (max-width: 480px) {
   .btn {
     width: 180px;
+  }
+
+  .form-container {
+    width: 90%;
+    margin: 0;
   }
 }
 

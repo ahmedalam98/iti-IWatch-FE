@@ -1,7 +1,12 @@
 <div class="single">
   <div class="parent">
+    @if(!movieDetails) {
+    <div class="loader-container">
+      <span class="loader">Load&nbsp;ng</span>
+    </div>
+    } @else {
     <div class="image-details">
-      <img class="image" [src]="movieDetails?.Poster" alt="" />
+      <img class="image" [src]="movieDetails?.Poster" alt="Movie Poster" />
       <button (click)="bookPage()" class="primary-btn reserve-large">
         Reserve Now
       </button>
@@ -67,6 +72,7 @@
     <button (click)="bookPage()" class="primary-btn reserve-small">
       Reserve Now
     </button>
+    }
   </div>
 
   <!--------------------------------------------------------------------------------->
