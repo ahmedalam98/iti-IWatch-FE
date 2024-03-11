@@ -1,5 +1,5 @@
 declare let google: any;
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import {
@@ -25,7 +25,8 @@ export class SignInComponent implements OnInit {
     private usersService: UsersServicesService,
     private http: HttpClient,
     private route: Router,
-    private AuthService: AuthServiceService
+    private AuthService: AuthServiceService,
+    private zone: NgZone
   ) {}
   /////////////////////////////////////////////////////////////////////////
 
@@ -69,11 +70,15 @@ export class SignInComponent implements OnInit {
         (data) => {
           localStorage.setItem('token', data.token);
           // sessionStorage.removeItem('loggedInUser');
-          this.route.navigate(['/']);
+          this.zone.run(() => {
+            this.route.navigate(['/']);
+          });
         },
         (err) => {
           if (!err.error.message) {
-            this.router.navigate(['/sign-up']);
+            this.zone.run(() => {
+              this.router.navigate(['/sign-up']);
+            });
           } else {
             this.notFoundMessage = String(err.error.message);
           }
