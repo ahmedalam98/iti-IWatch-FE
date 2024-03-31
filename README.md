@@ -93,13 +93,13 @@ This project require some perquisites and dependencies to be installed, you can 
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/merna-desouky/ITI-angular-project.git
+   git clone https://github.com/ahmedalam98/iti-IWatch-FE.git
    ```
 
 2. go to server folder
 
    ```sh
-   cd ITI-angular-project/Backend
+   cd ITI-IWATCH-FE/Backend
    ```
 
 3. install dependencies
@@ -121,7 +121,7 @@ This project require some perquisites and dependencies to be installed, you can 
 1. go to client folder
 
    ```sh
-   cd ITI-angular-project/Frontend
+   cd ITI-IWATCH-FE
    ```
 
 2. install dependencies
