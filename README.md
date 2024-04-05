@@ -93,13 +93,13 @@ This project require some perquisites and dependencies to be installed, you can 
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/ahmedalam98/iti-IWatch-FE.git
+   git clone https://github.com/ahmedalam98/iti-IWatch-BE.git
    ```
 
 2. go to server folder
 
    ```sh
-   cd ITI-IWATCH-FE/Backend
+   cd ITI-IWATCH-FE
    ```
 
 3. install dependencies
@@ -118,19 +118,25 @@ This project require some perquisites and dependencies to be installed, you can 
 
 #### Frontend
 
-1. go to client folder
+1. Clone the repo
+
+   ```sh
+   git clone https://github.com/ahmedalam98/iti-IWatch-BE.git
+   ```
+
+2. go to client folder
 
    ```sh
    cd ITI-IWATCH-FE
    ```
 
-2. install dependencies
+3. install dependencies
 
    ```bash
    npm install
    ```
 
-3. Run development server
+4. Run development server
 
    ```sh
    ng serve -o

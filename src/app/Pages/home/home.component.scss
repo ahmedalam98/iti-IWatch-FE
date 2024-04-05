@@ -51,6 +51,7 @@
 
   @media (max-width: "430px") {
     grid-template-columns: repeat(1, 1fr);
+    row-gap: 0rem;
   }
 }
 
@@ -62,6 +63,12 @@
   color: white;
   text-decoration: none !important;
   margin-top: 28px;
+}
+
+.pagination .ngx-pagination {
+  @media (max-width: 601px) {
+    padding-left: 1rem !important;
+  }
 }
 
 .pagination .ngx-pagination .current {
