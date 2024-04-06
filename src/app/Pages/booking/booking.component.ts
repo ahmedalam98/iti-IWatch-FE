@@ -110,7 +110,7 @@ export class BookingComponent implements OnInit, OnChanges, OnDestroy {
     this.sixth = [];
     this.siventh = [];
     this.eight = [];
-    for (let i = 0; i < this.reservedSeatsByCurrentUser.length; i++) {
+    for (let i = 0; i < this.reservedSeatsByCurrentUser?.length; i++) {
       this.seatState.updateSeatColor(
         this.reservedSeatsByCurrentUser[i].row,
         this.reservedSeatsByCurrentUser[i].num,
@@ -137,7 +137,7 @@ export class BookingComponent implements OnInit, OnChanges, OnDestroy {
       })
       .subscribe((data) => {
         this.time = [];
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < data?.length; i++) {
           this.time.push(data[i].time);
         }
       });
@@ -304,7 +304,7 @@ export class BookingComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   updateIsTaken(arrOfSeats: any, arrOfTakenSeats: any) {
-    for (let i = 0; i < arrOfSeats.length; i++) {
+    for (let i = 0; i < arrOfSeats?.length; i++) {
       arrOfTakenSeats.forEach((ele: any) => {
         if (arrOfSeats[i].num === ele.num && arrOfSeats[i].row === ele.row) {
           arrOfSeats[i].isTaken = true;
@@ -377,7 +377,7 @@ export class BookingComponent implements OnInit, OnChanges, OnDestroy {
       this.eight = [];
 
       this.bookingService.addToCart(this.objToSend).subscribe((data) => {
-        console.log('object is sent to backend');
+        // console.log('object is sent to backend');
       });
       this.router.navigate(['/checkout']);
     }

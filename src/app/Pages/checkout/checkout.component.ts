@@ -41,7 +41,7 @@ export class CheckoutComponent implements OnInit {
       next: (data: any) => {
         this.userCart = data;
 
-        if (this.userCart?.cart.length !== 0) {
+        if (this.userCart.cart?.length !== 0) {
           this.extractDataFromCart();
         }
       },
@@ -66,7 +66,7 @@ export class CheckoutComponent implements OnInit {
 
     try {
       await this.getUserCartWithRetry();
-      if (this.userCart?.cart.length !== 0) {
+      if (this.userCart.cart?.length !== 0) {
         this.extractDataFromCart();
       }
     } catch (error) {
@@ -85,7 +85,7 @@ export class CheckoutComponent implements OnInit {
         } catch (error) {
           console.log('Error fetching user cart:', error);
         }
-      }, 3500);
+      }, 500);
     });
   }
 
@@ -108,7 +108,7 @@ export class CheckoutComponent implements OnInit {
         .toPromise();
       const data = await this.cartService.getUserCart().toPromise();
       this.userCart = data;
-      if (this.userCart?.cart.length !== 0) {
+      if (this.userCart.cart?.length !== 0) {
         await this.extractDataFromCart();
       }
     } catch (error) {
@@ -131,7 +131,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   disableCheckoutButton() {
-    if (this.userCart?.cart.length === 0) {
+    if (this.userCart.cart?.length === 0) {
       return true;
     }
     return false;

@@ -12,7 +12,7 @@
         <h2>Cart</h2>
       </div>
 
-      @if(userCart.cart.length === 0 || userCart === {}){
+      @if(userCart.cart?.length === 0 || userCart === {}){
       <div class="empty-cart">
         <h3>No Movies in Cart</h3>
         <button class="primary-btn">

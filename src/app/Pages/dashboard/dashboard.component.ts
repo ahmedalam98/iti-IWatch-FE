@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
         this.dashData = data;
         // console.log(this.dashData);
 
-        for (let i = 0; i < this.dashData?.dashb.movieStatistics.length; i++) {
+        for (let i = 0; i < this.dashData?.dashb.movieStatistics?.length; i++) {
           this.labels.push(this.dashData.dashb.movieStatistics[i].Title);
           this.reviews.push(this.dashData.dashb.movieStatistics[i].reviewsNum);
           this.soldTickets.push(
