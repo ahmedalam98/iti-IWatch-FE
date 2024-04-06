@@ -99,7 +99,7 @@ This project require some perquisites and dependencies to be installed, you can 
 2. go to server folder
 
    ```sh
-   cd ITI-IWATCH-FE
+   cd ITI-IWATCH-BE
    ```
 
 3. install dependencies
